@@ -2,7 +2,10 @@
   "name": "ecommerce_server_cms",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "test": "jest --forceExit --runInBand --verbose --detectOpenHandles",
     "dev": "node ./bin/www",
