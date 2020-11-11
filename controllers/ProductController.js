@@ -31,6 +31,16 @@ class ProductController {
     }
   }
 
+  static async readProductById(req, res, next) {
+    try {
+      let id = +req.params.id;
+      const product = await Product.findByPk(id, { order: [["id", "ASC"]], include: Category });
+      res.status(200).json(product);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async updateProduct(req, res, next) {
     try {
       let id = +req.params.id;

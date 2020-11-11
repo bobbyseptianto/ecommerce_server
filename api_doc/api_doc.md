@@ -152,15 +152,23 @@
     **Content:**
     `[
     {
+    "id": 1,
+    "name": "Kabinet Modular BESTA",
+    "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
+    "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
+    "price": 4300000,
+    "stock": 5,
+    "UserId": 1,
+    "CategoryId": 1,
+    "createdAt": "2020-11-10T15:33:00.570Z",
+    "updatedAt": "2020-11-11T07:43:02.984Z",
+    "Category": {
         "id": 1,
-        "name": "PS 5",
-        "image_url": "https://ecs7-p.tokopedia.net/img/cache/200-square/product-1/2020/10/3/119218/119218_61799ae4-3bb2-4ab3-81f5-6ecd074cf03b_415_415.jpg",
-        "price": 11000000,
-        "stock": 5,
-        "CategoryId": 1,
+        "name": "Ruang Keluarga",
         "UserId": 1,
-        "createdAt": "2020-11-09T17:42:29.833Z",
-        "updatedAt": "2020-11-09T17:42:29.833Z"
+        "createdAt": "2020-11-10T15:31:37.977Z",
+        "updatedAt": "2020-11-10T15:31:37.977Z"
+      }
     }
     ]`
  
@@ -168,6 +176,70 @@
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Read Product By Id**
+----
+  Returns one available product data based on its 'id'.
+
+* **URL**
+
+  /products/:id
+
+* **Method:**
+  
+  `GET`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  **Required:**
+   
+  `id=[integer]`
+
+* **Data Params**
+   
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `{
+    "id": 1,
+    "name": "Kabinet Modular BESTA",
+    "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
+    "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
+    "price": 4300000,
+    "stock": 5,
+    "UserId": 1,
+    "CategoryId": 1,
+    "createdAt": "2020-11-10T15:33:00.570Z",
+    "updatedAt": "2020-11-11T07:43:02.984Z",
+    "Category": {
+        "id": 1,
+        "name": "Ruang Keluarga",
+        "UserId": 1,
+        "createdAt": "2020-11-10T15:31:37.977Z",
+        "updatedAt": "2020-11-10T15:31:37.977Z"
+      }
+    }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ msg : "Error not found!" }`
+
 
 &nbsp;
 
@@ -419,7 +491,7 @@
 
 &nbsp;
 
-**Delete Product**
+**Delete Category**
 ----
   Delete a category data based on its "id" on server.
 

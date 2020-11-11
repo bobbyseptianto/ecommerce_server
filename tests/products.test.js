@@ -33,6 +33,24 @@ beforeAll(async (done) => {
   })
 });
 
+let id_category = '';
+beforeAll(async (done) => {
+  request(app)
+  .post('/categories')
+  .set('access_token', access_token)
+  .send({
+    name: 'Ruang Makan'
+  })
+  .then((res) => {
+    id_category = res.body.id;
+    done();
+  })
+  .catch((err) => {
+    console.log(err);
+    done(err);
+  })
+});
+
 let id = '';
 
 // CREATE
@@ -49,7 +67,7 @@ describe('Test Endpoint POST /products', () => {
         description: 'Kombinasi penyimpanan dengan laci, Lappviken putih',
         price: 4300000,
         stock: 10,
-        CategoryId: 1
+        CategoryId: id_category
       })
       .then((res) => {
         const {body, status} = res;
@@ -81,7 +99,7 @@ describe('Test Endpoint POST /products', () => {
         description: 'Kombinasi penyimpanan dengan laci, Lappviken putih',
         price: 4300000,
         stock: 10,
-        CategoryId: 1
+        CategoryId: id_category
       })
       .then((res) => {
         const {body, status} = res;
@@ -105,7 +123,7 @@ describe('Test Endpoint POST /products', () => {
         description: 'Kombinasi penyimpanan dengan laci, Lappviken putih',
         price: 4300000,
         stock: 10,
-        CategoryId: 1
+        CategoryId: id_category
       })
       .then((res) => {
         const {body, status} = res;
@@ -129,7 +147,7 @@ describe('Test Endpoint POST /products', () => {
         description: 'Kombinasi penyimpanan dengan laci, Lappviken putih',
         price: '',
         stock: '',
-        CategoryId: 1
+        CategoryId: id_category
       })
       .then((res) => {
         const {body, status} = res;
@@ -153,7 +171,7 @@ describe('Test Endpoint POST /products', () => {
         description: 'Kombinasi penyimpanan dengan laci, Lappviken putih',
         price: -4300000,
         stock: 10,
-        CategoryId: 1
+        CategoryId: id_category
       })
       .then((res) => {
         const {body, status} = res;
@@ -177,7 +195,7 @@ describe('Test Endpoint POST /products', () => {
         description: 'Kombinasi penyimpanan dengan laci, Lappviken putih',
         price: 4300000,
         stock: -10,
-        CategoryId: 1
+        CategoryId: id_category
       })
       .then((res) => {
         const {body, status} = res;
@@ -201,7 +219,7 @@ describe('Test Endpoint POST /products', () => {
         description: 'Kombinasi penyimpanan dengan laci, Lappviken putih',
         price: 4300000,
         stock: "sepuluh",
-        CategoryId: 1
+        CategoryId: id_category
       })
       .then((res) => {
         const {body, status} = res;
@@ -231,7 +249,7 @@ describe('Test Endpoint PUT /products/:id', () => {
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
       stock: 5,
-      CategoryId: 2
+      CategoryId: id_category
     })
     .then((res) => {
       const {body, status} = res;
@@ -261,7 +279,7 @@ describe('Test Endpoint PUT /products/:id', () => {
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
       stock: 5,
-      CategoryId: 2
+      CategoryId: id_category
     })
     .then((res) => {
       const {body, status} = res;
@@ -285,7 +303,7 @@ describe('Test Endpoint PUT /products/:id', () => {
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
       stock: 5,
-      CategoryId: 2
+      CategoryId: id_category
     })
     .then((res) => {
       const {body, status} = res;
@@ -309,7 +327,7 @@ describe('Test Endpoint PUT /products/:id', () => {
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: -12497000,
       stock: 5,
-      CategoryId: 2
+      CategoryId: id_category
     })
     .then((res) => {
       const {body, status} = res;
@@ -333,7 +351,7 @@ describe('Test Endpoint PUT /products/:id', () => {
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
       stock: -5,
-      CategoryId: 2
+      CategoryId: id_category
     })
     .then((res) => {
       const {body, status} = res;
@@ -357,7 +375,7 @@ describe('Test Endpoint PUT /products/:id', () => {
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
       stock: "lima",
-      CategoryId: 2
+      CategoryId: id_category
     })
     .then((res) => {
       const {body, status} = res;

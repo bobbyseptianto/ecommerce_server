@@ -1,18 +1,18 @@
 const request = require('supertest');
 const app = require('../app');
-// const {sequelize} = require("../models/index");
-// const {queryInterface} = sequelize;
+const {sequelize} = require("../models/index");
+const {queryInterface} = sequelize;
 
-// // Lifecycle
-// afterAll((done) => {
-//   queryInterface.bulkDelete("Categories")
-//   .then((result) => {
-//     done();
-//   })
-//   .catch((err) => {
-//     done(err);
-//   });
-// });
+// Lifecycle
+afterAll((done) => {
+  queryInterface.bulkDelete("Categories")
+  .then((result) => {
+    done();
+  })
+  .catch((err) => {
+    done(err);
+  });
+});
 
 // Butuh Access Token => Generate di beforeAll
 let access_token = '';
