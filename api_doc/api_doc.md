@@ -84,8 +84,10 @@
 
   `name=[string]`,
   `image_url=[string]`,
+  `description=[string]`,
   `price=[integer]`,
   `stock=[integer]`
+  `CategoryId=[integer]`
 
 * **Success Response:**
 
@@ -96,6 +98,7 @@
     "image_url": "https://ecs7-p.tokopedia.net/img/cache/200-square/product-1/2020/10/3/119218/119218_61799ae4-3bb2-4ab3-81f5-6ecd074cf03b_415_415.jpg",
     "price": 11000000,
     "stock": 5,
+    "CategoryId": 1,
     "UserId": 1,
     "updatedAt": "2020-11-09T17:42:29.833Z",
     "createdAt": "2020-11-09T17:42:29.833Z"
@@ -154,6 +157,7 @@
         "image_url": "https://ecs7-p.tokopedia.net/img/cache/200-square/product-1/2020/10/3/119218/119218_61799ae4-3bb2-4ab3-81f5-6ecd074cf03b_415_415.jpg",
         "price": 11000000,
         "stock": 5,
+        "CategoryId": 1,
         "UserId": 1,
         "createdAt": "2020-11-09T17:42:29.833Z",
         "updatedAt": "2020-11-09T17:42:29.833Z"
@@ -202,7 +206,8 @@
   `name=[string]`,
   `image_url=[string]`,
   `price=[integer]`,
-  `stock=[integer]`
+  `stock=[integer]`,
+  `CategoryId=[integer]`
 
 * **Success Response:**
 
@@ -214,6 +219,7 @@
     "image_url": "https://cdn.mos.cms.futurecdn.net/y9MdEUKkZ6itgR6y6Rqaif-970-80",
     "price": 12000000,
     "stock": 10,
+    "CategoryId": 2,
     "UserId": 1,
     "createdAt": "2020-11-09T17:42:29.833Z",
     "updatedAt": "2020-11-09T17:53:41.555Z"

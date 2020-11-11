@@ -230,7 +230,8 @@ describe('Test Endpoint PUT /products/:id', () => {
       image_url: 'https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/247/0824740_PE776188_S4.jpg',
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
-      stock: 5
+      stock: 5,
+      CategoryId: 2
     })
     .then((res) => {
       const {body, status} = res;
@@ -241,6 +242,7 @@ describe('Test Endpoint PUT /products/:id', () => {
       expect(body).toHaveProperty('description', "Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening");
       expect(body).toHaveProperty('price', 12497000);
       expect(body).toHaveProperty('stock', 5);
+      expect(body).toHaveProperty('CategoryId', expect.any(Number));
       done();
     })
     .catch((err) => {
@@ -258,7 +260,8 @@ describe('Test Endpoint PUT /products/:id', () => {
       image_url: 'https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/247/0824740_PE776188_S4.jpg',
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
-      stock: 5
+      stock: 5,
+      CategoryId: 2
     })
     .then((res) => {
       const {body, status} = res;
@@ -281,7 +284,8 @@ describe('Test Endpoint PUT /products/:id', () => {
       image_url: 'https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/247/0824740_PE776188_S4.jpg',
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
-      stock: 5
+      stock: 5,
+      CategoryId: 2
     })
     .then((res) => {
       const {body, status} = res;
@@ -304,7 +308,8 @@ describe('Test Endpoint PUT /products/:id', () => {
       image_url: 'https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/247/0824740_PE776188_S4.jpg',
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: -12497000,
-      stock: 5
+      stock: 5,
+      CategoryId: 2
     })
     .then((res) => {
       const {body, status} = res;
@@ -327,7 +332,8 @@ describe('Test Endpoint PUT /products/:id', () => {
       image_url: 'https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/247/0824740_PE776188_S4.jpg',
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
-      stock: -5
+      stock: -5,
+      CategoryId: 2
     })
     .then((res) => {
       const {body, status} = res;
@@ -350,7 +356,8 @@ describe('Test Endpoint PUT /products/:id', () => {
       image_url: 'https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/247/0824740_PE776188_S4.jpg',
       description: 'Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening',
       price: 12497000,
-      stock: "lima"
+      stock: "lima",
+      CategoryId: 2
     })
     .then((res) => {
       const {body, status} = res;

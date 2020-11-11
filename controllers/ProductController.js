@@ -34,13 +34,14 @@ class ProductController {
   static async updateProduct(req, res, next) {
     try {
       let id = +req.params.id;
-      const { name, image_url, description, price, stock } = req.body;
+      const { name, image_url, description, price, stock, CategoryId } = req.body;
       let productObj = {
         name,
         image_url,
         description,
         price,
-        stock
+        stock,
+        CategoryId
       };
       const product = await Product.update(productObj, { where: {id}, returning: true });
       res.status(200).json(product[1][0]);
