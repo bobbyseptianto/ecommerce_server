@@ -16,9 +16,9 @@ app.use(express.json());
 app.use(router);
 app.use(errorHandler);
 
-// Gunakan Saat Production!
-app.listen(port, () => {
-  console.log(`app listen on port ${port}`);
-});
+// // Gunakan Saat Production!
+// app.listen(port, () => {
+//   console.log(`app listen on port ${port}`);
+// });
 
 module.exports = app;

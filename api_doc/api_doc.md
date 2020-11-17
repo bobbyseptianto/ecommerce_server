@@ -1,13 +1,13 @@
 # E-Commerce CMS Server
 
 ## RESTful endpoints
-**Login**
+**Login Admin**
 ----
-  Login on server.
+  Login admin on server.
 
 * **URL**
 
-  /login
+  /loginAdmin
 
 * **Method:**
   
@@ -528,6 +528,656 @@
   * **Code:** 200 OK <br />
     **Content:**
     `{ msg : 'Successfully delete a category!' }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ msg : "Error not found!" }`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Register Customer**
+----
+  Register customer on server.
+
+* **URL**
+
+  /registerCustomer
+
+* **Method:**
+  
+  `POST`
+
+* **Request Headers**
+
+  None
+  
+* **URL Params**
+   
+  None
+
+* **Data Params**
+
+   **Required:**
+
+   `email=[string]`
+   `password=[string]`
+
+* **Success Response:**
+
+  * **Code:** 201 CREATED <br />
+    **Content:**
+    `{
+      "id": 1,
+      "email": "user@gmail.com"
+    }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ msg : "Email is required!, Wrong email format!, Password is required!, Password length minimum 4 characters!" }`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Login Customer**
+----
+  Login customer on server.
+
+* **URL**
+
+  /loginCustomer
+
+* **Method:**
+  
+  `POST`
+
+* **Request Headers**
+
+  None
+  
+* **URL Params**
+   
+  None
+
+* **Data Params**
+
+   **Required:**
+
+   `email=[string]`
+   `password=[string]`
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    ```
+    {
+      "id": 1,
+      "email": "admin@mail.com",
+      "access_token": "<your access token>"
+    }
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ msg : "Invalid email or password!" }`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Add To Cart**
+----
+  Add product data to cart.
+
+* **URL**
+
+  /carts
+
+* **Method:**
+  
+  `POST`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  None
+
+* **Data Params**
+
+  **Required:**
+
+  `ProductId=[integer]`
+
+* **Success Response:**
+  * **Code:** 200 OK <br />
+    **Content:** `{
+    "id": 3,
+    "ProductId": 1,
+    "UserId": 3,
+    "updatedAt": "2020-11-17T06:36:14.916Z",
+    "createdAt": "2020-11-17T06:36:14.916Z",
+    "quantity": 3
+    }`
+
+    OR
+
+  * **Code:** 201 CREATED <br />
+    **Content:** `{
+    "id": 3,
+    "ProductId": 1,
+    "UserId": 3,
+    "updatedAt": "2020-11-17T06:36:14.916Z",
+    "createdAt": "2020-11-17T06:36:14.916Z",
+    "quantity": 1
+    }`
+ 
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Read Cart**
+----
+  Returns all products in cart.
+
+* **URL**
+
+  /carts
+
+* **Method:**
+  
+  `GET`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  None
+
+* **Data Params**
+   
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `[
+    {
+        "id": 2,
+        "quantity": 5,
+        "ProductId": 1,
+        "UserId": 3,
+        "createdAt": "2020-11-17T04:40:13.518Z",
+        "updatedAt": "2020-11-17T04:55:09.055Z",
+        "Product": {
+            "id": 1,
+            "name": "Kabinet Modular BESTA",
+            "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
+            "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
+            "price": 4300000,
+            "stock": 5,
+            "UserId": 1,
+            "CategoryId": 3,
+            "createdAt": "2020-11-10T15:33:00.570Z",
+            "updatedAt": "2020-11-11T09:55:13.249Z",
+            "Category": {
+                "id": 3,
+                "name": "Dapur",
+                "UserId": 1,
+                "createdAt": "2020-11-10T15:31:37.977Z",
+                "updatedAt": "2020-11-10T15:31:37.977Z"
+            }
+        }
+    },
+    {
+        "id": 3,
+        "quantity": 1,
+        "ProductId": 1,
+        "UserId": 3,
+        "createdAt": "2020-11-17T06:36:14.916Z",
+        "updatedAt": "2020-11-17T06:36:14.916Z",
+        "Product": {
+            "id": 1,
+            "name": "Kabinet Modular BESTA",
+            "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
+            "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
+            "price": 4300000,
+            "stock": 5,
+            "UserId": 1,
+            "CategoryId": 3,
+            "createdAt": "2020-11-10T15:33:00.570Z",
+            "updatedAt": "2020-11-11T09:55:13.249Z",
+            "Category": {
+                "id": 3,
+                "name": "Dapur",
+                "UserId": 1,
+                "createdAt": "2020-11-10T15:31:37.977Z",
+                "updatedAt": "2020-11-10T15:31:37.977Z"
+            }
+        }
+    }
+]`
+ 
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Read Cart By Id**
+----
+  Returns one cart data based on its 'id'.
+
+* **URL**
+
+  /carts/:id
+
+* **Method:**
+  
+  `GET`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  **Required:**
+   
+  `id=[integer]`
+
+* **Data Params**
+   
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `{
+    "id": 2,
+    "quantity": 5,
+    "ProductId": 1,
+    "UserId": 3,
+    "createdAt": "2020-11-17T04:40:13.518Z",
+    "updatedAt": "2020-11-17T04:55:09.055Z",
+    "Product": {
+        "id": 1,
+        "name": "Kabinet Modular BESTA",
+        "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
+        "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
+        "price": 4300000,
+        "stock": 5,
+        "UserId": 1,
+        "CategoryId": 3,
+        "createdAt": "2020-11-10T15:33:00.570Z",
+        "updatedAt": "2020-11-11T09:55:13.249Z",
+        "Category": {
+            "id": 3,
+            "name": "Dapur",
+            "UserId": 1,
+            "createdAt": "2020-11-10T15:31:37.977Z",
+            "updatedAt": "2020-11-10T15:31:37.977Z"
+        }
+    }
+}`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ msg : "Error not found!" }`
+
+&nbsp;
+
+**Update Cart**
+----
+  Update a product data in cart based on its "id" on server.
+
+* **URL**
+
+  /carts/:id
+
+* **Method:**
+  
+  `PUT`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  **Required:**
+   
+  `id=[integer]`
+
+* **Data Params**
+
+  **Required:**
+   
+  `quantity=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `{
+    "id": 2,
+    "quantity": 5,
+    "ProductId": 1,
+    "UserId": 3,
+    "createdAt": "2020-11-17T04:40:13.518Z",
+    "updatedAt": "2020-11-17T06:53:00.265Z"
+    }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ msg : "Quantity is required and must be an Integer!" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ msg : "Error not found!" }`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+  
+**Delete Cart**
+----
+  Delete a product data based on its "id" on server.
+
+* **URL**
+
+  /products/:id
+
+* **Method:**
+  
+  `DELETE`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  **Required:**
+
+  `id=[integer]`
+
+* **Data Params**
+   
+   None
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `{ msg : 'Successfully delete a product!' }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ msg : "Error not found!" }`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Add To Wishlist**
+----
+  Add product data to wishlist.
+
+* **URL**
+
+  /wishlist
+
+* **Method:**
+  
+  `POST`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  None
+
+* **Data Params**
+
+  **Required:**
+
+  `ProductId=[integer]`
+
+* **Success Response:**
+  * **Code:** 200 OK <br />
+    **Content:** `{
+    "id": 1,
+    "ProductId": 1,
+    "UserId": 3,
+    "createdAt": "2020-11-17T07:38:11.981Z",
+    "updatedAt": "2020-11-17T07:38:11.981Z"
+    }`
+
+    OR
+
+  * **Code:** 201 CREATED <br />
+    **Content:** `{
+    "id": 1,
+    "ProductId": 1,
+    "UserId": 3,
+    "createdAt": "2020-11-17T07:38:11.981Z",
+    "updatedAt": "2020-11-17T07:38:11.981Z"
+    }`
+ 
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Read Wishlist**
+----
+  Returns all products in whislist.
+
+* **URL**
+
+  /wishlist
+
+* **Method:**
+  
+  `GET`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  None
+
+* **Data Params**
+   
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `[
+    {
+        "id": 1,
+        "ProductId": 1,
+        "UserId": 3,
+        "createdAt": "2020-11-17T07:38:11.981Z",
+        "updatedAt": "2020-11-17T07:38:11.981Z",
+        "Product": {
+            "id": 1,
+            "name": "Kabinet Modular BESTA",
+            "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
+            "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
+            "price": 4300000,
+            "stock": 5,
+            "UserId": 1,
+            "CategoryId": 3,
+            "createdAt": "2020-11-10T15:33:00.570Z",
+            "updatedAt": "2020-11-11T09:55:13.249Z",
+            "Category": {
+                "id": 3,
+                "name": "Dapur",
+                "UserId": 1,
+                "createdAt": "2020-11-10T15:31:37.977Z",
+                "updatedAt": "2020-11-10T15:31:37.977Z"
+            }
+        }
+    },
+    {
+        "id": 3,
+        "ProductId": 5,
+        "UserId": 3,
+        "createdAt": "2020-11-17T07:38:33.371Z",
+        "updatedAt": "2020-11-17T07:38:33.371Z",
+        "Product": {
+            "id": 5,
+            "name": "Meja TV HEMNES",
+            "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/247/0824740_PE776188_S4.jpg",
+            "description": "Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening",
+            "price": 12497000,
+            "stock": 5,
+            "UserId": 1,
+            "CategoryId": 1,
+            "createdAt": "2020-11-10T18:12:48.405Z",
+            "updatedAt": "2020-11-10T18:12:48.405Z",
+            "Category": {
+                "id": 1,
+                "name": "Ruang Keluarga",
+                "UserId": 1,
+                "createdAt": "2020-11-10T15:31:37.977Z",
+                "updatedAt": "2020-11-10T15:31:37.977Z"
+            }
+        }
+    }
+]`
+ 
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+  
+**Delete Whislist**
+----
+  Delete a product data based on its "id" in wishlist on server.
+
+* **URL**
+
+  /wishlist/:id
+
+* **Method:**
+  
+  `DELETE`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  **Required:**
+
+  `id=[integer]`
+
+* **Data Params**
+   
+   None
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `{ msg : 'Successfully delete your wishlist product!' }`
  
 * **Error Response:**
 

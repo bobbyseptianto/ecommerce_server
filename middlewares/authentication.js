@@ -9,7 +9,7 @@ async function authentication(req, res, next) {
     } else {
       const decoded = verifyToken(access_token);
       const { email } = decoded;
-      const user = await User.findOne({ where: {email, role: "admin"} });
+      const user = await User.findOne({ where: {email} });
       if (!user) {
         throw { msg: `Authentication failed!`, status: 401 };
       } else {
