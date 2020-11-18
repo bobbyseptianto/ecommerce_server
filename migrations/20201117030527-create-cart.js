@@ -11,6 +11,9 @@ module.exports = {
       quantity: {
         type: Sequelize.INTEGER
       },
+      checkout: {
+        type: Sequelize.STRING
+      },
       ProductId: {
         type: Sequelize.INTEGER,
         references: {

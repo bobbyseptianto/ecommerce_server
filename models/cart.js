@@ -16,6 +16,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Cart.init({
+    checkout: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Status is required!`
+        }
+      }
+    },
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -35,7 +45,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       beforeCreate(instance, options) {
-        instance.quantity = 1
+        instance.quantity = 1;
+        instance.checkout = false
       }
     },
     sequelize,

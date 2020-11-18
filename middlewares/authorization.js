@@ -10,13 +10,13 @@ async function authorizationProduct(req, res, next) {
       } else if (product.UserId === req.userLoggedIn.id && req.userLoggedIn.role === 'admin') {
         next();
       } else {
-        throw { msg: `Not authorized!`, status: 401 };
+        throw { msg: `Authentication failed!`, status: 401 };
       }
     } else {
       if (req.userLoggedIn.role === 'admin') {
         next();
       } else {
-        throw { msg: `Not authorized!`, status: 401 };
+        throw { msg: `Authentication failed!`, status: 401 };
       }
     }
   } catch (err) {
@@ -34,13 +34,13 @@ async function authorizationCategory(req, res, next) {
       } else if (category.UserId === req.userLoggedIn.id && req.userLoggedIn.role === 'admin') {
         next();
       } else {
-        throw { msg: `Not authorized!`, status: 401 };
+        throw { msg: `Authentication failed!`, status: 401 };
       }
     } else {
       if (req.userLoggedIn.role === 'admin') {
         next();
       } else {
-        throw { msg: `Not authorized!`, status: 401 };
+        throw { msg: `Authentication failed!`, status: 401 };
       }
     }
   } catch (err) {
@@ -58,13 +58,13 @@ async function authorizationCart(req, res, next) {
       } else if (cart.UserId === req.userLoggedIn.id && req.userLoggedIn.role === 'customer') {
         next();
       } else {
-        throw { msg: `Not authorized!`, status: 401 };
+        throw { msg: `Authentication failed!`, status: 401 };
       }
     } else {
       if (req.userLoggedIn.role === 'customer') {
         next();
       } else {
-        throw { msg: `Not authorized!`, status: 401 };
+        throw { msg: `Authentication failed!`, status: 401 };
       }
     }
   } catch (err) {
@@ -83,13 +83,13 @@ async function authorizationWishlist(req, res, next) {
       } else if (wishlist.UserId === req.userLoggedIn.id && req.userLoggedIn.role === 'customer') {
         next();
       } else {
-        throw { msg: `Not authorized!`, status: 401 };
+        throw { msg: `Authentication failed!`, status: 401 };
       }
     } else {
       if (req.userLoggedIn.role === 'customer') {
         next();
       } else {
-        throw { msg: `Not authorized!`, status: 401 };
+        throw { msg: `Authentication failed!`, status: 401 };
       }
     }
   } catch (err) {

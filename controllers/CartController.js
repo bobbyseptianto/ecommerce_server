@@ -1,4 +1,5 @@
 const { Cart, Product, Category } = require("../models/index");
+const money = require("../helpers/money");
 
 class CartController {
 
@@ -10,10 +11,14 @@ class CartController {
         ProductId,
         UserId
       };
-      const existCart = await Cart.findOne({where:{ProductId: cartObj.ProductId, UserId: cartObj.UserId}})
+      const existCart = await Cart.findOne({where:{ProductId: cartObj.ProductId, UserId: cartObj.UserId}, include: {model: Product, include: {model: Category}}})
       if (existCart) {
-        const cart = await Cart.increment("quantity", {where: {id: existCart.id}, returning: true})
-        res.status(200).json(cart[0][0][0]);
+        if (existCart.quantity >= existCart.Product.stock) {
+          throw { msg: `Running out of stock product!`, status: 400 };
+        } else {
+          const cart = await Cart.increment("quantity", {where: {id: existCart.id}, returning: true})
+          res.status(200).json(cart[0][0][0]);
+        }
       } else {
         const cart = await Cart.create(cartObj);
         res.status(201).json(cart);
@@ -26,8 +31,13 @@ class CartController {
   static async readCart(req, res, next) {
     try {
       const UserId = +req.userLoggedIn.id;
-      const cart = await Cart.findAll({ where: { UserId } ,order: [["id", "ASC"]], include: {model: Product, include: {model: Category}} });
-      res.status(200).json(cart);
+      const cart = await Cart.findAll({ where: { UserId, checkout: 'false' } ,order: [["id", "ASC"]], include: {model: Product, include: {model: Category}} });
+      let total = 0;
+      cart.forEach(product => {
+        total += product.quantity * product.Product.price;
+      });
+      let totalFormatted = money(total);
+      res.status(200).json({cart, total: totalFormatted});
     } catch (err) {
       next(err);
     }
@@ -47,11 +57,16 @@ class CartController {
     try {
       let id = +req.params.id;
       const { quantity } = req.body;
-      let cartObj = {
-        quantity
-      };
-      const cart = await Cart.update(cartObj, { where: {id}, returning: true });
-      res.status(200).json(cart[1][0]);
+      const checkStock = await Cart.findByPk(id, { order: [["id", "ASC"]], include: {model: Product, include: {model: Category}} });
+      if (quantity > checkStock.Product.stock) {
+        throw { msg: `Running out of stock product!`, status: 400 };
+      } else {
+        let cartObj = {
+          quantity
+        };
+        const cart = await Cart.update(cartObj, { where: {id}, returning: true });
+        res.status(200).json(cart[1][0]);
+      }
     } catch (err) {
       next(err);
     }

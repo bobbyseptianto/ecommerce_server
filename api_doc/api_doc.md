@@ -736,62 +736,67 @@
 
   * **Code:** 200 OK <br />
     **Content:**
-    `[
-    {
-        "id": 2,
-        "quantity": 5,
-        "ProductId": 1,
-        "UserId": 3,
-        "createdAt": "2020-11-17T04:40:13.518Z",
-        "updatedAt": "2020-11-17T04:55:09.055Z",
-        "Product": {
+    `{
+    "cart": [
+        {
             "id": 1,
-            "name": "Kabinet Modular BESTA",
-            "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
-            "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
-            "price": 4300000,
-            "stock": 5,
-            "UserId": 1,
-            "CategoryId": 3,
-            "createdAt": "2020-11-10T15:33:00.570Z",
-            "updatedAt": "2020-11-11T09:55:13.249Z",
-            "Category": {
-                "id": 3,
-                "name": "Dapur",
+            "checkout": "false",
+            "quantity": 6,
+            "ProductId": 1,
+            "UserId": 3,
+            "createdAt": "2020-11-17T14:31:33.968Z",
+            "updatedAt": "2020-11-17T15:10:33.092Z",
+            "Product": {
+                "id": 1,
+                "name": "Kabinet Modular BESTA",
+                "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
+                "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
+                "price": 4300000,
+                "stock": 6,
                 "UserId": 1,
-                "createdAt": "2020-11-10T15:31:37.977Z",
-                "updatedAt": "2020-11-10T15:31:37.977Z"
+                "CategoryId": 3,
+                "createdAt": "2020-11-10T15:33:00.570Z",
+                "updatedAt": "2020-11-11T09:55:13.249Z",
+                "Category": {
+                    "id": 3,
+                    "name": "Dapur",
+                    "UserId": 1,
+                    "createdAt": "2020-11-10T15:31:37.977Z",
+                    "updatedAt": "2020-11-10T15:31:37.977Z"
+                }
+            }
+        },
+        {
+            "id": 2,
+            "checkout": "false",
+            "quantity": 1,
+            "ProductId": 5,
+            "UserId": 3,
+            "createdAt": "2020-11-17T14:32:02.720Z",
+            "updatedAt": "2020-11-17T15:00:31.653Z",
+            "Product": {
+                "id": 5,
+                "name": "Meja TV HEMNES",
+                "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/247/0824740_PE776188_S4.jpg",
+                "description": "Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening",
+                "price": 12497000,
+                "stock": 8,
+                "UserId": 1,
+                "CategoryId": 1,
+                "createdAt": "2020-11-10T18:12:48.405Z",
+                "updatedAt": "2020-11-10T18:12:48.405Z",
+                "Category": {
+                    "id": 1,
+                    "name": "Ruang Keluarga",
+                    "UserId": 1,
+                    "createdAt": "2020-11-10T15:31:37.977Z",
+                    "updatedAt": "2020-11-10T15:31:37.977Z"
+                }
             }
         }
-    },
-    {
-        "id": 3,
-        "quantity": 1,
-        "ProductId": 1,
-        "UserId": 3,
-        "createdAt": "2020-11-17T06:36:14.916Z",
-        "updatedAt": "2020-11-17T06:36:14.916Z",
-        "Product": {
-            "id": 1,
-            "name": "Kabinet Modular BESTA",
-            "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
-            "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
-            "price": 4300000,
-            "stock": 5,
-            "UserId": 1,
-            "CategoryId": 3,
-            "createdAt": "2020-11-10T15:33:00.570Z",
-            "updatedAt": "2020-11-11T09:55:13.249Z",
-            "Category": {
-                "id": 3,
-                "name": "Dapur",
-                "UserId": 1,
-                "createdAt": "2020-11-10T15:31:37.977Z",
-                "updatedAt": "2020-11-10T15:31:37.977Z"
-            }
-        }
-    }
-]`
+    ],
+    "total": 38297000
+}`
  
 * **Error Response:**
 
@@ -838,25 +843,26 @@
     **Content:**
     `{
     "id": 2,
-    "quantity": 5,
-    "ProductId": 1,
+    "checkout": "false",
+    "quantity": 1,
+    "ProductId": 5,
     "UserId": 3,
-    "createdAt": "2020-11-17T04:40:13.518Z",
-    "updatedAt": "2020-11-17T04:55:09.055Z",
+    "createdAt": "2020-11-17T14:32:02.720Z",
+    "updatedAt": "2020-11-17T15:00:31.653Z",
     "Product": {
-        "id": 1,
-        "name": "Kabinet Modular BESTA",
-        "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
-        "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
-        "price": 4300000,
-        "stock": 5,
+        "id": 5,
+        "name": "Meja TV HEMNES",
+        "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/247/0824740_PE776188_S4.jpg",
+        "description": "Kombinasi penyimpanan TV, hitam-cokelat/cokelat muda kaca bening",
+        "price": 12497000,
+        "stock": 8,
         "UserId": 1,
-        "CategoryId": 3,
-        "createdAt": "2020-11-10T15:33:00.570Z",
-        "updatedAt": "2020-11-11T09:55:13.249Z",
+        "CategoryId": 1,
+        "createdAt": "2020-11-10T18:12:48.405Z",
+        "updatedAt": "2020-11-10T18:12:48.405Z",
         "Category": {
-            "id": 3,
-            "name": "Dapur",
+            "id": 1,
+            "name": "Ruang Keluarga",
             "UserId": 1,
             "createdAt": "2020-11-10T15:31:37.977Z",
             "updatedAt": "2020-11-10T15:31:37.977Z"
@@ -910,13 +916,14 @@
   * **Code:** 200 OK <br />
     **Content:**
     `{
-    "id": 2,
-    "quantity": 5,
+    "id": 1,
+    "checkout": "false",
+    "quantity": 6,
     "ProductId": 1,
     "UserId": 3,
-    "createdAt": "2020-11-17T04:40:13.518Z",
-    "updatedAt": "2020-11-17T06:53:00.265Z"
-    }`
+    "createdAt": "2020-11-17T14:31:33.968Z",
+    "updatedAt": "2020-11-17T15:16:01.930Z"
+}`
  
 * **Error Response:**
 
@@ -1018,16 +1025,6 @@
   `ProductId=[integer]`
 
 * **Success Response:**
-  * **Code:** 200 OK <br />
-    **Content:** `{
-    "id": 1,
-    "ProductId": 1,
-    "UserId": 3,
-    "createdAt": "2020-11-17T07:38:11.981Z",
-    "updatedAt": "2020-11-17T07:38:11.981Z"
-    }`
-
-    OR
 
   * **Code:** 201 CREATED <br />
     **Content:** `{
@@ -1039,6 +1036,11 @@
     }`
  
 * **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ msg : "Already added in your wishlist!" }`
+
+  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ msg : "Internal server error!" }`

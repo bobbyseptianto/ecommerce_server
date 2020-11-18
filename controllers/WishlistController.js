@@ -12,7 +12,7 @@ class WishlistController {
       };
       const existProductInWishlist = await Wishlist.findOne({where:{ProductId: wishlistObj.ProductId, UserId: wishlistObj.UserId}})
       if (existProductInWishlist) {
-        res.status(200).json(existProductInWishlist);
+        throw { msg: `Already added in your wishlist!`, status: 400 };
       } else {
         const wishlist = await Wishlist.create(wishlistObj);
         res.status(201).json(wishlist);
