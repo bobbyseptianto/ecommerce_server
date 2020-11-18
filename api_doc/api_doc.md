@@ -879,7 +879,7 @@
 
 **Update Cart**
 ----
-  Update a product data in cart based on its "id" on server.
+  Update quantity a product data in cart based on its "id" on server.
 
 * **URL**
 
@@ -887,7 +887,7 @@
 
 * **Method:**
   
-  `PUT`
+  `PATCH`
 
 * **Request Headers**
 
@@ -936,6 +936,55 @@
     **Content:** `{ msg : "Error not found!" }`
 
   OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Update Checkout Cart**
+----
+  Update quantity stock product data in DB based on its "id" on server.
+
+* **URL**
+
+  /carts/:id
+
+* **Method:**
+  
+  `PUT`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  **Required:**
+   
+  `id=[integer]`
+
+* **Data Params**
+
+  **Required:**
+   
+  `quantity=[integer]`,
+  `ProductId=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `{ msg : 'Successfully checkout products on your cart!' }`
+}`
+ 
+* **Error Response:**
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ msg : "Internal server error!" }`

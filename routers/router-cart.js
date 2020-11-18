@@ -9,7 +9,8 @@ router.use(authenticationCustomer);
 router.post("/", authorizationCart, CartController.addToCart);
 router.get("/", authorizationCart, CartController.readCart);
 router.get("/:id", authorizationCart, CartController.readCartById);
-router.put("/:id", authorizationCart, CartController.updateCart);
+router.patch("/:id", authorizationCart, CartController.updateCart);
+router.put("/:id", authorizationCart, CartController.checkout);
 router.delete("/:id", authorizationCart, CartController.deleteCart);
 
 module.exports = router;

@@ -11,12 +11,12 @@ class CartController {
         ProductId,
         UserId
       };
-      const existCart = await Cart.findOne({where:{ProductId: cartObj.ProductId, UserId: cartObj.UserId}, include: {model: Product, include: {model: Category}}})
+      const existCart = await Cart.findOne({where:{ProductId: cartObj.ProductId, UserId: cartObj.UserId, checkout: 'false'}, include: {model: Product, include: {model: Category}}})
       if (existCart) {
         if (existCart.quantity >= existCart.Product.stock) {
           throw { msg: `Running out of stock product!`, status: 400 };
         } else {
-          const cart = await Cart.increment("quantity", {where: {id: existCart.id}, returning: true})
+          const cart = await Cart.increment("quantity", {where: {id: existCart.id, checkout: 'false'}, returning: true})
           res.status(200).json(cart[0][0][0]);
         }
       } else {
@@ -84,6 +84,26 @@ class CartController {
       res.status(200).json({
         msg: `Successfully remove a product on your cart!`
       });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async checkout(req, res, next) {
+    try {
+      let id = +req.params.id;
+      const {quantity, ProductId} = req.body;
+      const cart = await Cart.update({checkout: "true"}, {where: {id}})
+      if (cart) {
+        const product = await Product.findOne({where: {id: ProductId}});
+        if (product) {
+          let updateStockProduct = product.stock - quantity;
+          const productCheckout = await Product.update({stock: updateStockProduct}, {where: {id: ProductId}});
+          res.status(200).json({
+            msg: `Successfully checkout products on your cart!`
+          });
+        }
+      }
     } catch (err) {
       next(err);
     }
