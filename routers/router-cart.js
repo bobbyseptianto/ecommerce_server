@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const CartController = require("../controllers/CartController");
+const {authenticationCustomer} = require("../middlewares/authentication");
 const {authorizationCart} = require("../middlewares/authorization");
+
+// Authentication
+router.use(authenticationCustomer);
 
 router.post("/", authorizationCart, CartController.addToCart);
 router.get("/", authorizationCart, CartController.readCart);

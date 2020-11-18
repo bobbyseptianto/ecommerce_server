@@ -20,8 +20,13 @@ class CartController {
           res.status(200).json(cart[0][0][0]);
         }
       } else {
-        const cart = await Cart.create(cartObj);
-        res.status(201).json(cart);
+        const product = await Product.findOne({where:{id: cartObj.ProductId}})
+        if (product.stock <= 0) {
+          throw { msg: `Running out of stock product!`, status: 400 };
+        } else {
+          const cart = await Cart.create(cartObj);
+          res.status(201).json(cart);
+        }
       }
     } catch (err) {
       next(err);
