@@ -1192,3 +1192,130 @@
     **Content:** `{ msg : "Internal server error!" }`
 
 &nbsp;
+
+**Read Products for customer**
+----
+  Returns all available products data.
+
+* **URL**
+
+  /productsCustomer
+
+* **Method:**
+  
+  `GET`
+
+* **Request Headers**
+
+  **Required:**
+
+  None
+  
+* **URL Params**
+
+  None
+
+* **Data Params**
+   
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `[
+    {
+    "id": 1,
+    "name": "Kabinet Modular BESTA",
+    "image_url": "https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/images/501/0350121_PE535204_S4.jpg",
+    "description": "Kombinasi penyimpanan dengan laci, Lappviken putih",
+    "price": 4300000,
+    "stock": 5,
+    "UserId": 1,
+    "CategoryId": 1,
+    "createdAt": "2020-11-10T15:33:00.570Z",
+    "updatedAt": "2020-11-11T07:43:02.984Z",
+    "Category": {
+        "id": 1,
+        "name": "Ruang Keluarga",
+        "UserId": 1,
+        "createdAt": "2020-11-10T15:31:37.977Z",
+        "updatedAt": "2020-11-10T15:31:37.977Z"
+      }
+    }
+    ]`
+ 
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Read Categories for Customer**
+----
+  Returns all available categories data.
+
+* **URL**
+
+  /categoriesCustomer
+
+* **Method:**
+  
+  `GET`
+
+* **Request Headers**
+
+  **Required:**
+
+  None
+  
+* **URL Params**
+
+  None
+
+* **Data Params**
+   
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `[
+    {
+        "id": 1,
+        "name": "Ruang Keluarga",
+        "UserId": 1,
+        "createdAt": "2020-11-10T06:28:15.150Z",
+        "updatedAt": "2020-11-10T06:28:15.150Z"
+    },
+    {
+        "id": 2,
+        "name": "Kamar Tidur",
+        "UserId": 1,
+        "createdAt": "2020-11-10T06:28:15.150Z",
+        "updatedAt": "2020-11-10T06:28:15.150Z"
+    },
+    {
+        "id": 3,
+        "name": "Dapur",
+        "UserId": 1,
+        "createdAt": "2020-11-10T06:28:15.150Z",
+        "updatedAt": "2020-11-10T06:28:15.150Z"
+    },
+    {
+        "id": 5,
+        "name": "Kamar Mandi",
+        "UserId": 1,
+        "createdAt": "2020-11-10T07:56:04.792Z",
+        "updatedAt": "2020-11-10T07:56:04.792Z"
+    }
+]`
+ 
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
