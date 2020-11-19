@@ -675,27 +675,34 @@
 * **Success Response:**
   * **Code:** 200 OK <br />
     **Content:** `{
-    "id": 3,
+    "id": 54,
+    "quantity": 5,
+    "checkout": "false",
     "ProductId": 1,
     "UserId": 3,
-    "updatedAt": "2020-11-17T06:36:14.916Z",
-    "createdAt": "2020-11-17T06:36:14.916Z",
-    "quantity": 3
-    }`
+    "createdAt": "2020-11-19T03:24:29.410Z",
+    "updatedAt": "2020-11-19T03:26:16.362Z"
+}`
 
     OR
 
   * **Code:** 201 CREATED <br />
     **Content:** `{
-    "id": 3,
+    "id": 54,
     "ProductId": 1,
     "UserId": 3,
-    "updatedAt": "2020-11-17T06:36:14.916Z",
-    "createdAt": "2020-11-17T06:36:14.916Z",
-    "quantity": 1
-    }`
+    "updatedAt": "2020-11-19T03:24:29.410Z",
+    "createdAt": "2020-11-19T03:24:29.410Z",
+    "quantity": 1,
+    "checkout": "false"
+}`
  
 * **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ msg : "Running out of stock product!" }`
+
+  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ msg : "Internal server error!" }`
@@ -929,6 +936,8 @@
 
   * **Code:** 400 BAD REQUEST <br />
     **Content:** `{ msg : "Quantity is required and must be an Integer!" }`
+    OR
+    **Content:** `{ msg : "Running out of stock product!" }`
 
   OR
 
@@ -985,6 +994,137 @@
 }`
  
 * **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Update Cart Quantity Increment**
+----
+  Update increment quantity in cart based on its "id" on server.
+
+* **URL**
+
+  /carts/:id/incrementQuantity
+
+* **Method:**
+  
+  `PATCH`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  **Required:**
+   
+  `id=[integer]`
+
+* **Data Params**
+
+  **Required:**
+   
+  `quantity=[integer]`,
+  `ProductId=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `{
+    "id": 1,
+    "checkout": "false",
+    "quantity": 6,
+    "ProductId": 1,
+    "UserId": 3,
+    "createdAt": "2020-11-17T14:31:33.968Z",
+    "updatedAt": "2020-11-17T15:16:01.930Z"
+}`
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ msg : "Running out of stock product!" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ msg : "Error not found!" }`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ msg : "Internal server error!" }`
+
+&nbsp;
+
+**Update Cart Quantity Decrement**
+----
+  Update decrement quantity in cart based on its "id" on server.
+
+* **URL**
+
+  /carts/:id/decrementQuantity
+
+* **Method:**
+  
+  `PATCH`
+
+* **Request Headers**
+
+  **Required:**
+
+  ```
+  {
+    "access_token": "<your access token>"
+  }
+  ```
+  
+* **URL Params**
+
+  **Required:**
+   
+  `id=[integer]`
+
+* **Data Params**
+
+  **Required:**
+   
+  `quantity=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 OK <br />
+    **Content:**
+    `{
+    "id": 1,
+    "checkout": "false",
+    "quantity": 5,
+    "ProductId": 1,
+    "UserId": 3,
+    "createdAt": "2020-11-17T14:31:33.968Z",
+    "updatedAt": "2020-11-17T15:16:01.930Z"
+}`
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ msg : "Minimum quantity is 1!" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ msg : "Error not found!" }`
+
+  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ msg : "Internal server error!" }`

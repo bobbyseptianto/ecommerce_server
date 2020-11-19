@@ -109,6 +109,37 @@ class CartController {
     }
   }
 
+  static async decrementQuantity(req, res, next) {
+    try {
+      let id = +req.params.id;
+      const { quantity } = req.body;
+      if (quantity <= 1) {
+        throw { msg: `Minimum quantity is 1!`, status: 400 };
+      } else {
+        const cart = await Cart.decrement("quantity", {where: {id, checkout: 'false'}, returning: true})
+        res.status(200).json(cart[0][0][0]);
+      }
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async incrementQuantity(req, res, next) {
+    try {
+      let id = +req.params.id;
+      const { quantity, ProductId } = req.body;
+      const product = await Product.findOne({where:{id: ProductId}})
+      if (quantity >= product.stock) {
+        throw { msg: `Running out of stock product!`, status: 400 };
+      } else {
+        const cart = await Cart.increment("quantity", {where: {id, checkout: 'false'}, returning: true})
+        res.status(200).json(cart[0][0][0]);
+      }
+    } catch (err) {
+      next(err);
+    }
+  }
+
 }
 
 module.exports = CartController;
