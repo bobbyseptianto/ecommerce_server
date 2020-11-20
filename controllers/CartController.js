@@ -91,23 +91,48 @@ class CartController {
 
   static async checkout(req, res, next) {
     try {
-      let id = +req.params.id;
-      const {quantity, ProductId} = req.body;
-      const cart = await Cart.update({checkout: "true"}, {where: {id}})
-      if (cart) {
-        const product = await Product.findOne({where: {id: ProductId}});
-        if (product) {
-          let updateStockProduct = product.stock - quantity;
-          const productCheckout = await Product.update({stock: updateStockProduct}, {where: {id: ProductId}});
-          res.status(200).json({
-            msg: `Successfully checkout products on your cart!`
-          });
-        }
-      }
+      const UserId = +req.userLoggedIn.id;
+      const cart = await Cart.findAll({where: {UserId, checkout: 'false'}})
+      const updatedCart = await Promise.all(
+        cart.map(async (productInCart) => {
+          const checkoutStatus = await Cart.update({checkout: 'true'}, {where: {id: productInCart.id}, returning: true})
+          const product = await Product.findOne({where: {id: productInCart.ProductId}});
+          if (product) {
+            let updateStockProduct = product.stock - productInCart.quantity;
+            await Product.update({stock: updateStockProduct}, {where: {id: productInCart.ProductId}, returning: true});
+          }
+          return checkoutStatus[1][0];
+        })
+      )
+      res.status(200).json({
+        msg: `Successfully checkout products on your cart!`,
+        summary: updatedCart
+      })
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
+
+  // static async checkout(req, res, next) {
+  //   try {
+  //     let id = +req.params.id;
+  //     const {quantity, ProductId} = req.body;
+  //     const cart = await Cart.update({checkout: "true"}, {where: {id}})
+  //     if (cart) {
+  //       const product = await Product.findOne({where: {id: ProductId}});
+  //       if (product) {
+  //         let updateStockProduct = product.stock - quantity;
+  //         const productCheckout = await Product.update({stock: updateStockProduct}, {where: {id: ProductId}});
+  //         res.status(200).json({
+  //           msg: `Successfully checkout products on your cart!`
+  //         });
+  //       }
+  //     }
+  //   } catch (err) {
+  //     next(err);
+  //   }
+  // }
 
   static async decrementQuantity(req, res, next) {
     try {
